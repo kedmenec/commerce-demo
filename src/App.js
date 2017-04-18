@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div style={{display: 'flex',flexDirection: 'row', flex: 1}}>
+        <div style={{flex:1, background: '#f7f7f7'}}/>
+
+        <div style={{width:1200, display: 'flex', flexDirection: 'column', background: '#f7f7f7', margin: 10}}>
+
+          <div style={{background: 'gray', border: '1px solid black', display: 'flex', flexDirection: 'row', padding: 10}}>
+            <div style={{flex: 1}}>PAG Commerce</div>
+            <div style={{flex: 5, display: 'flex'}}>
+              <input style={{flex: 1}}/>
+            </div>
+            <div style={{flex: 1}}>Cart</div>
+          </div>
+
+          <div style={{height: 10}}></div>
+          <div style={{flex: 1, border: '1px solid black', background: 'white'}}>
+            {this.props.children}
+          </div>
+
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <div style={{flex:1, background: '#f7f7f7'}}/>
       </div>
+
     );
   }
 }
