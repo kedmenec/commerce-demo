@@ -35,6 +35,12 @@ const Products = ({ match }) => (
   </div>
 )
 
+const Login = ({ match }) => (
+  <div>
+    <h2>Login Form</h2>
+  </div>
+)
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
@@ -42,6 +48,7 @@ ReactDOM.render(
         <Route exact path="/" component={Products}/>
         <Route exact path="/products" component={Products}/>
         <Route exact path="/cart" component={Cart}/>
+        <Route exact path="/login" component={Login}/>
       </App>
     </Router>
   </Provider>,

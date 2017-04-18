@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 
+
+import {
+  Link
+} from 'react-router-dom'
+
 class App extends Component {
   render() {
     return (
@@ -14,7 +19,9 @@ class App extends Component {
             <div style={{flex: 5, display: 'flex'}}>
               <input style={{flex: 1}}/>
             </div>
-            <div style={{flex: 1}}>Cart</div>
+            <div style={{flex: 1}}>
+              <Link to='/cart'>Cart</Link>
+            </div>
           </div>
 
           <div style={{height: 10}}></div>
