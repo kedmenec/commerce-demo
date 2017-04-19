@@ -9,7 +9,6 @@ import {
   Link
 } from 'react-router-dom'
 
-// import {api} from '.utils/Api'
 import { Button } from 'semantic-ui-react'
 import { Card, Icon, Image, Input, Modal, Form } from 'semantic-ui-react'
 
