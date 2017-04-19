@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import { withRouter } from 'react-router'
 import { connect}  from 'react-redux';
+import Navigation from './navigation'
 
 import {
   Link
 } from 'react-router-dom'
 
 // import {api} from '.utils/Api'
+import { Button } from 'semantic-ui-react'
 
 
-
+import { Card, Icon, Image, Input } from 'semantic-ui-react'
 
 class App extends Component {
 
@@ -35,38 +37,51 @@ class App extends Component {
 
 
   render() {
+    console.log('rendering')
     return (
-      <div style={{display: 'flex',flexDirection: 'row', flex: 1}}>
-        <div style={{flex:1, background: '#f7f7f7'}}/>
+      <div style={{display: 'flex',flexDirection: 'row', flex: 1, background: '#f7f7f7'}}>
+        <div style={{flex:1, }}/>
 
-        <div style={{width:1200, display: 'flex', flexDirection: 'column', background: '#f7f7f7', margin: 10}}>
+        <div style={{width:1200, display: 'flex', flexDirection: 'column', margin: 10}}>
 
-          <div style={{background: 'gray', border: '1px solid black', display: 'flex', flexDirection: 'row', padding: 10}}>
-            <div style={{flex: 1}}>PAG Commerce</div>
+          <Card fluid style={{display: 'flex', flexDirection: 'row', padding: 10, marginBottom: 0}}>
+            <div style={{flex: 1, alignItems: 'center', display: 'flex'}}>
+              <Icon name='new pied piper' size='big' color='green' style={{marginBottom: 10}}/><b>CommercePiper</b>
+            </div>
             <div style={{flex: 5, display: 'flex'}}>
-              <input style={{flex: 1}}/>
+              <Input
+                style={{flex: 1}}
+                placeholder='Search...'
+              />
             </div>
-            <div style={{flex: 1}}>
-              <Link to='/cart'>Cart</Link>
+            <div style={{flex: 1, alignItems: 'center', justifyContent: 'flex-end', display: 'flex'}}>
+              <Link to='/cart'>
+                <Button
+                  color='blue'
+                  content='Cart'
+                  basic
+                  label={{basic: true, color: 'blue', pointing: 'left', icon: 'cart'}}
+                />
+              </Link>
             </div>
+          </Card>
 
-          </div>
+          <Card fluid style={{display: 'flex', flexDirection: 'row', padding: 10, marginBottom: 0}}>
 
-          <div style={{background: 'orange', border: '1px solid black', display: 'flex', flexDirection: 'row', padding: 10}}>
             <div style={{flex: 6, display: 'flex'}}>
-              Navigation
+              {/*<Link to='/products'>Navigation</Link>*/}
+              <Navigation/>
             </div>
+
             <div style={{flex: 1}}>
               <div onClick={this.load_products}>
                 Login/Signup (or my account)
               </div>
             </div>
-          </div>
-
-          <div style={{height: 10}}></div>
-          <div style={{flex: 1, border: '1px solid black', background: 'white'}}>
+          </Card>
+          <Card fluid style={{flex: 1}}>
             {this.props.children}
-          </div>
+          </Card>
 
         </div>
 
@@ -77,13 +92,11 @@ class App extends Component {
   }
 }
 
-
 const mapStateToProps = (state, ownProps) => ({
 
 });
 
-// MaintenanceRecordFull = withRouter(connect(mapStateToProps)(MaintenanceRecordFull));
+const connected = connect(mapStateToProps)(App)
 
-// export default MaintenanceRecordFull
-
-export default connect(mapStateToProps)(App);
+// Wrap with withRouter to get around shouldComponentUpdate on route change.
+export default withRouter(connected);

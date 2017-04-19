@@ -38,10 +38,8 @@ const store = createStore(
 // Begin our Index Saga
 sagaMiddleware.run(IndexSagas)
 
-const Cart = ({ match }) => (
-  <div>
-    <h2>Cart</h2>
-  </div>
+const Cart = () => (
+  <div>cart</div>
 )
 
 /*const Products = ({ match }) => (
@@ -50,20 +48,26 @@ const Cart = ({ match }) => (
   </div>
 )*/
 
-const Login = ({ match }) => (
+const Login = () => (
   <div>
     <h2>Login Form</h2>
+  </div>
+)
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
   </div>
 )
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App>
-        <Route exact path="/" component={Products}/>
-        <Route exact path="/products" component={Products}/>
-        <Route exact path="/cart" component={Cart}/>
-        <Route exact path="/login" component={Login}/>
+      <App history={history}>
+        <Route exact path='/' component={Home}/>
+        <Route path="/products" component={Products}/>
+        <Route path="/cart" component={Cart}/>
+        <Route path="/login" component={Login}/>
       </App>
     </Router>
   </Provider>,
