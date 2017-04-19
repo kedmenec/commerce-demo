@@ -1,12 +1,39 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { connect}  from 'react-redux';
 
 import {
   Link
 } from 'react-router-dom'
 
+// import {api} from '.utils/Api'
+
+
+
+
 class App extends Component {
+
+  login = () => {
+    this.props.dispatch({
+      type: 'CLIENT_REQUEST',
+      payload: {
+        username: 'tim',
+        password: 'q1w2e3r4'
+      },
+      // property_id: this.props.propertyId,
+      // maintenance_id: this.props.record.id
+    })
+  }
+
+  load_products = () => {
+    console.log('load products')
+    this.props.dispatch({
+      type: 'PRODUCT_LOAD_REQUEST'
+    })
+  }
+
+
   render() {
     return (
       <div style={{display: 'flex',flexDirection: 'row', flex: 1}}>
@@ -21,6 +48,18 @@ class App extends Component {
             </div>
             <div style={{flex: 1}}>
               <Link to='/cart'>Cart</Link>
+            </div>
+
+          </div>
+
+          <div style={{background: 'orange', border: '1px solid black', display: 'flex', flexDirection: 'row', padding: 10}}>
+            <div style={{flex: 6, display: 'flex'}}>
+              Navigation
+            </div>
+            <div style={{flex: 1}}>
+              <div onClick={this.load_products}>
+                Login/Signup (or my account)
+              </div>
             </div>
           </div>
 
@@ -38,4 +77,13 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+// MaintenanceRecordFull = withRouter(connect(mapStateToProps)(MaintenanceRecordFull));
+
+// export default MaintenanceRecordFull
+
+export default connect(mapStateToProps)(App);
