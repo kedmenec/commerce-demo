@@ -24,12 +24,13 @@ class Navigation extends Component {
     // The products should pass through the visability filter first.
     return (
       <div style={{display: 'flex', flex: 1}}>
-        <Menu>
+        <Menu style={{flex: 1}}>
           {[...catSet].sort().map((category, i) =>
             <Menu.Item
               name={category}
               active={activeItem === category}
               onClick={this.handleItemClick}
+              key={i}
               >{category}
             </Menu.Item>
           )}
