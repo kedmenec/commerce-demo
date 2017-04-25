@@ -12,6 +12,13 @@ import {
 import { Button } from 'semantic-ui-react'
 import { Card, Icon, Image, Input, Modal, Form } from 'semantic-ui-react'
 
+
+
+// A simple wrapper around the the semantic UI input component that will omit the
+// meta prop (this avoids an "Unknown prop `meta` on <div>" error)
+const renderInput = ({ input, meta, ...rest }) => <Input {...input} {...rest} />
+
+
 class App extends Component {
 
   state = { open: false }
@@ -56,7 +63,7 @@ class App extends Component {
             <div style={{flex: 5, display: 'flex'}}>
               <Field
                 name='search'
-                component={Input}
+                component={renderInput}
                 style={{flex: 1}}
               />
             </div>

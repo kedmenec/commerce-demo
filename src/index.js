@@ -19,6 +19,7 @@ import IndexSagas from './index-sagas'
 
 import App from './App'
 import Products from './products'
+import Cart from './cart'
 
 // Setup the middleware to watch between the Reducers and the Actions
 const sagaMiddleware = createSagaMiddleware()
@@ -38,9 +39,9 @@ const store = createStore(
 // Begin our Index Saga
 sagaMiddleware.run(IndexSagas)
 
-const Cart = () => (
-  <div>cart</div>
-)
+// const Cart = () => (
+//   <div>cart</div>
+// )
 
 /*const Products = ({ match }) => (
   <div>

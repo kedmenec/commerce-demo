@@ -1,16 +1,13 @@
-import { PRODUCT_LOAD_SUCCESS } from './constants'
-
 const initialSate = {
-  products: []
+  filter: null
 }
 
 const reducer = function productReducer (state = initialSate, action) {
   switch (action.type) {
-    case PRODUCT_LOAD_SUCCESS:
+    case 'SET_CATEGORY_SUCCESS':
       return {
-        products: action.payload
+        filter: action.payload
       }
-
     default:
       return state
   }

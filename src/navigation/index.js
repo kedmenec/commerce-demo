@@ -9,10 +9,15 @@ class Navigation extends Component {
 
   state = {}
 
-  handleItemClick = (e, { name }) => (
+  handleItemClick = (e, { name }) => {
     // We should disapatch the active filter here to save in state.
-    this.setState({ activeItem: name })
-  )
+
+    this.props.dispatch({
+      type: 'SET_CATEGORY_REQUEST',
+      payload: name
+    })
+
+  }
 
   render () {
     const {
@@ -22,9 +27,7 @@ class Navigation extends Component {
     if (products.length === 0) {
       return null
     }
-    const { activeItem } = this.state
-
-
+    const activeItem = this.props.filter
     const catSet = new Set(products.map(function(d) { return d['category']; }))
 
     // The products should pass through the visability filter first.
@@ -55,6 +58,7 @@ Navigation.propTypes = {
 // Grab only the piece of state we need
 const mapStateToProps = state => ({
   products: state.products.products,
+  filter: state.navigation.filter
 })
 
 
