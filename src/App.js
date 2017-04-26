@@ -19,7 +19,7 @@ import { Card, Icon, Image, Input, Modal, Form } from 'semantic-ui-react'
 const renderInput = ({ input, meta, ...rest }) => <Input {...input} {...rest} />
 
 
-class App extends Component {
+export class App extends Component {
 
   state = { open: false }
 

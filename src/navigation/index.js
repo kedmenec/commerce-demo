@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import { Card, Icon, Image, Menu} from 'semantic-ui-react'
 import { reduxForm, Field } from 'redux-form'
 
-class Navigation extends Component {
+// export the unwrapped component by itself as well for testing.
+// Testing HOC add significant overhead that for now doesnt add value.
+export class Navigation extends Component {
 
   state = {}
 
