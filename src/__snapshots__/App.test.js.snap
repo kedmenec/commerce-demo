@@ -1,0 +1,194 @@
+exports[`test renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "background": "#f7f7f7",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }>
+  <div
+    style={
+      Object {
+        "flex": 1,
+      }
+    } />
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 10,
+        "width": 1200,
+      }
+    }>
+    <div
+      className="ui fluid card"
+      href={undefined}
+      onClick={[Function]}
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "marginBottom": 0,
+          "padding": 10,
+        }
+      }>
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flex": 1,
+          }
+        }>
+        <a
+          href="/products"
+          onClick={[Function]}>
+          <i
+            aria-hidden="true"
+            className="green new pied piper big icon"
+            style={
+              Object {
+                "marginBottom": 10,
+              }
+            } />
+          <b>
+            CommercePiper
+          </b>
+        </a>
+      </div>
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "flex": 5,
+          }
+        }>
+        <div
+          className="ui input"
+          style={
+            Object {
+              "flex": 1,
+            }
+          }>
+          <input
+            name="search"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onDragStart={[Function]}
+            onDrop={[Function]}
+            onFocus={[Function]}
+            type="text"
+            value="" />
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flex": 1,
+            "justifyContent": "flex-end",
+          }
+        }>
+        <a
+          href="/cart"
+          onClick={[Function]}>
+          <div
+            className="ui labeled button"
+            onClick={[Function]}>
+            <button
+              className="ui blue basic button"
+              tabIndex={0}>
+               
+              Cart
+            </button>
+            <div
+              className="ui blue left pointing basic label"
+              onClick={[Function]}>
+              <i
+                aria-hidden="true"
+                className="cart icon" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div
+      className="ui fluid card"
+      href={undefined}
+      onClick={[Function]}
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "marginBottom": 0,
+          "padding": 10,
+        }
+      }>
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "flex": 6,
+          }
+        }>
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "flex": 1,
+            }
+          }>
+          <div
+            className="ui menu"
+            style={
+              Object {
+                "flex": 1,
+              }
+            }>
+            <a
+              className="item"
+              onClick={[Function]}>
+              
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "flex": 1,
+            "justifyContent": "flex-end",
+          }
+        }>
+        <button
+          className="ui blue basic button"
+          onClick={[Function]}
+          tabIndex={undefined}>
+          Login/Signup
+        </button>
+      </div>
+    </div>
+    <div
+      className="ui fluid card"
+      href={undefined}
+      onClick={[Function]}
+      style={
+        Object {
+          "flex": 1,
+        }
+      } />
+  </div>
+  <div
+    style={
+      Object {
+        "background": "#f7f7f7",
+        "flex": 1,
+      }
+    } />
+</div>
+`;

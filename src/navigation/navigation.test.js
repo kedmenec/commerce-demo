@@ -3,16 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Navigation } from '.';
 
+import renderer from 'react-test-renderer';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  var products = [{
-    title: 'Testing'
-  }]
-  var filter = "Sport"
+const products = [{
+  title: 'Testing'
+}]
+const filter = "Sport"
 
-  ReactDOM.render(
-    <Navigation filter={filter} products={products}/>,
-    div
-  );
+it('renders correctly', () => {
+  const tree = renderer.create(
+    <Navigation filter={filter} products={products}/>
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });

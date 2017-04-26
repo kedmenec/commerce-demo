@@ -1,0 +1,23 @@
+exports[`test renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+    }
+  }>
+  <div
+    className="ui menu"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }>
+    <a
+      className="item"
+      onClick={[Function]}>
+
+    </a>
+  </div>
+</div>
+`;
