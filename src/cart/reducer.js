@@ -1,10 +1,10 @@
 // import { PRODUCT_LOAD_SUCCESS } from './constants'
 
-const initialSate = {
+const initialState = {
   cart: []
 }
 
-const reducer = function productReducer (state = initialSate, action) {
+const reducer = function productReducer (state = initialState, action) {
   switch (action.type) {
     case 'ADD_TO_CART_SUCCESS':
       return {
@@ -22,6 +22,11 @@ const reducer = function productReducer (state = initialSate, action) {
           ...state.cart.slice(index + 1)
         ]
       }
+
+    case 'CHECKOUT_SUCCESS':
+      // empty cart.
+      return Object.assign({}, state, initialState);
+
     default:
       return state
   }

@@ -1,6 +1,6 @@
-import {watchLoginRequest} from './client/sagas'
+import {watchLoginRequest, watchGetUserRequest} from './client/sagas'
 import {watchProductLoadRequest} from './products/sagas'
-import {watchAddToCartRequest, watchRemoveFromCartRequest} from './cart/sagas'
+import {watchAddToCartRequest, watchRemoveFromCartRequest, watchCheckoutRequest} from './cart/sagas'
 import {watchSetCategoryFilterRequest} from './navigation/sagas'
 
 export default function* IndexSaga () {
@@ -10,5 +10,7 @@ export default function* IndexSaga () {
     watchAddToCartRequest(),
     watchRemoveFromCartRequest(),
     watchSetCategoryFilterRequest(),
+    watchGetUserRequest(),
+    watchCheckoutRequest(),
   ]
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types';
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Rating } from 'semantic-ui-react'
 
 class Products extends Component {
 
@@ -14,10 +14,20 @@ class Products extends Component {
     })
   }
 
+
+  summarize_rating = (reviews) => {
+    console.log('summarize_review')
+    if (reviews.length === 0) {
+       return 0
+    }
+    return 3
+  }
+
   render () {
     const {
       products,
       category_filter,
+      username
     } = this.props
 
     if (products.length === 0) {
@@ -25,9 +35,18 @@ class Products extends Component {
     }
 
     // Filter the products by the search string if any is set.
-    const searchString = this.props.search.values ? this.props.search.values.search : '';
-    let filtered_products = products.filter((product) => product.title.includes(searchString));
+    let searchString = '';
+    try {
+      const searchString = this.props.search.values.search ? this.props.search.values.search : '';
+    } catch (e) {
+      // pass
+    }
 
+    // if (!searchString) {
+    //   searchString = ''
+    // }
+    console.log('props username' + username)
+    let filtered_products = products.filter((product) => product.title.includes(searchString));
     // Filter the products by the selected category if set.
     if (category_filter) {
       filtered_products = filtered_products.filter((product) => product.category === category_filter);
@@ -42,6 +61,16 @@ class Products extends Component {
             <Card.Content description={'Colour: ' + product.colour} />
             <Card.Content description={'Category: ' + product.category} />
             <Card.Content description={'Price: ' + product.price} />
+            <Card.Content>
+              <Rating
+                maxRating={5}
+                defaultRating={this.summarize_rating(product.reviews)}
+                icon='star'
+                size='large'
+                disabled={!Boolean(username)}
+              />
+
+            </Card.Content>
             <Card.Content extra>
               <Button basic color='blue' style={{width: '100%'}} onClick={this.addToCart.bind(this, product)}>Add to Cart</Button>
             </Card.Content>
@@ -63,6 +92,7 @@ const mapStateToProps = state => ({
   products: state.products.products,
   search: state.form.search,
   category_filter: state.navigation.filter,
+  username: state.client.username
 })
 
 const connected = connect(mapStateToProps)(Products)

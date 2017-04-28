@@ -21,21 +21,31 @@ const renderInput = ({ input, meta, ...rest }) => <Input {...input} {...rest} />
 
 export class App extends Component {
 
-  state = { open: false }
+  state = { login_open: false, logout_open: false }
 
-  show = (dimmer) => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
+  show_login = (dimmer) => () => this.setState({ dimmer, login_open: true })
+  close_login = () => this.setState({ login_open: false })
+  close_logout = () => this.setState({ logout_open: false })
+
+
+  show_logout = (dimmer) => () => this.setState({ dimmer, logout_open: true })
 
   login = () => {
     this.props.dispatch({
       type: 'CLIENT_REQUEST',
-      payload: {
-        username: 'tim',
-        password: 'q1w2e3r4'
-      },
+
     })
-    this.close()
+    this.close_login()
   }
+
+  logout = () => {
+    this.props.dispatch({
+      type: 'CLIENT_UNSET',
+
+    })
+    this.close_logout()
+  }
+
 
   componentDidMount = () => {
     // The first time the main component is mounted, dispatch a request to the api
@@ -46,10 +56,11 @@ export class App extends Component {
   }
 
   render() {
-    const { open, dimmer } = this.state
+
+    const { login_open, logout_open, dimmer } = this.state
 
     return (
-      <div style={{display: 'flex',flexDirection: 'row', flex: 1, background: '#f7f7f7'}}>
+      <div style={{display: 'flex', flexDirection: 'row', flex: 1, background: '#f7f7f7'}}>
         <div style={{flex:1}}/>
 
         <div style={{width:1200, display: 'flex', flexDirection: 'column', margin: 10}}>
@@ -87,9 +98,14 @@ export class App extends Component {
             </div>
 
             <div style={{flex: 1, justifyContent: 'flex-end', display: 'flex'}}>
-              <Button basic color='blue' onClick={this.show('blurring')}>
-                Login/Signup
-              </Button>
+              { this.props.client.username ?
+                <Button basic color='green' onClick={this.show_logout('blurring')}>Hi {this.props.client.username}.. Logout?</Button>
+              :
+                <Button basic color='blue' onClick={this.show_login('blurring')}>
+                  Login/Signup
+                </Button>
+              }
+
             </div>
           </Card>
           <Card fluid style={{flex: 1}}>
@@ -101,15 +117,26 @@ export class App extends Component {
         <div style={{flex:1, background: '#f7f7f7'}}/>
 
 
-        <Modal dimmer={dimmer} open={open} onClose={this.close} size='small' closeIcon='close'>
+        <Modal dimmer={dimmer} open={login_open} onClose={this.close_login} size='small' closeIcon='close'>
           <Modal.Header>Login or Signup</Modal.Header>
           <Modal.Content>
             <Modal.Description>
               <p>If you already have a username and password, enter it here.</p>
               <p>If you dont, enter the username and password you want to use and we will create an account for you!</p>
               <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Input placeholder='Username' style={{margin:5}}/>
-                <Input placeholder='Password' style={{margin:5}}/>
+              <Field
+                name='username'
+                component={renderInput}
+                placeholder='Username'
+                style={{margin: 5}}
+              />
+
+              <Field
+                name='password'
+                component={renderInput}
+                placeholder='Password'
+                style={{margin: 5}}
+              />
               </div>
             </Modal.Description>
 
@@ -119,6 +146,16 @@ export class App extends Component {
           </Modal.Actions>
         </Modal>
 
+
+        <Modal dimmer={dimmer} open={logout_open} onClose={this.close_logout} size='small' closeIcon='close'>
+          <Modal.Header>Logout</Modal.Header>
+
+          <Modal.Actions>
+            <Button positive icon='checkmark' labelPosition='right' content="Logout" onClick={this.logout} />
+          </Modal.Actions>
+        </Modal>
+
+
       </div>
 
     );
@@ -127,6 +164,7 @@ export class App extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   // search: state.search
+  client: state.client
 });
 
 const connected = connect(mapStateToProps)(App)
