@@ -154,6 +154,10 @@ class Products extends Component {
               <b>{this.state.rating_dialog_product.title}</b>
             </h3>
           </Modal.Content>
+
+          {this.state.rating_dialog_product.reviews.length === 0 && <Modal.Content>There are no reviews</Modal.Content>
+}
+
           {this
             .state
             .rating_dialog_product
@@ -166,32 +170,38 @@ class Products extends Component {
               </Modal.Content>
             ))}
 
-          {this.props.username && <Modal.Content>
-            <Message>
-              <h3>Leave Review</h3>
-              <Input
-                style={{
-                padding: 10,
-                width: '100%'
-              }}
-                onChange={this.handleReview}/>
-              <br/>
-              <Rating
-                maxRating={5}
-                defaultRating={0}
-                icon='star'
-                size='large'
-                onClick={this
-                .rate
-                .bind(this, this.state.rating_dialog_product)}
-                onRate={this.handleRate}/>
-              <br/>
-              <Button color='green' inverted onClick={this.handleRateClick}>
-                <Icon name='checkmark'/>
-                Submit Review
-              </Button>
-            </Message>
-          </Modal.Content>
+          {this.props.username
+            ? <Modal.Content>
+                <Message>
+                  <h3>Leave Review</h3>
+                  <Input
+                    style={{
+                    padding: 10,
+                    width: '100%'
+                  }}
+                    onChange={this.handleReview}/>
+                  <br/>
+                  <Rating
+                    maxRating={5}
+                    defaultRating={0}
+                    icon='star'
+                    size='large'
+                    onClick={this
+                    .rate
+                    .bind(this, this.state.rating_dialog_product)}
+                    onRate={this.handleRate}/>
+                  <br/>
+                  <Button color='green' inverted onClick={this.handleRateClick}>
+                    <Icon name='checkmark'/>
+                    Submit Review
+                  </Button>
+                </Message>
+              </Modal.Content>
+            : <Modal.Content>
+              <Message>
+                You must be logged in to leave a review.
+              </Message>
+            </Modal.Content>
 }
 
         </Modal>

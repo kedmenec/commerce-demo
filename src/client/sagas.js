@@ -4,18 +4,35 @@ import {api} from '../utils/Api'
 function * getToken(action) {
   const state = yield select();
 
-  let payload = {
-    username: state.form.search.values.username,
-    password: state.form.search.values.password
-  }
-  const request = {
+  const tokenRequest = {
     endpoint: '/rest-auth/login/',
     method: 'POST',
-    payload: payload
+    payload: {
+      username: state.form.search.values.username,
+      password: state.form.search.values.password
+    }
+  }
+
+  const registerRequest = {
+    endpoint: '/rest-auth/registration/',
+    method: 'POST',
+    payload: {
+      username: state.form.search.values.username,
+      password1: state.form.search.values.password,
+      password2: state.form.search.values.password
+    }
+  }
+
+  // Really simple but terrible user management, if the user cant login using the
+  // username and password, try to create an account.
+  try {
+    yield call(api, registerRequest)
+  } catch (e) {
+    console.log('probably already registered')
   }
 
   try {
-    const response = yield call(api, request);
+    const response = yield call(api, tokenRequest);
     yield[put({
         type: 'CLIENT_SET',
         payload: {

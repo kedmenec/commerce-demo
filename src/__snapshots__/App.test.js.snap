@@ -44,7 +44,7 @@ exports[`test renders correctly 1`] = `
           }
         }>
         <a
-          href="/products"
+          href="/"
           onClick={[Function]}>
           <i
             aria-hidden="true"
@@ -139,19 +139,25 @@ exports[`test renders correctly 1`] = `
           style={
             Object {
               "display": "flex",
-              "flex": 1,
             }
           }>
           <div
-            className="ui menu"
+            className="ui borderless fluid menu"
             style={
               Object {
                 "flex": 1,
+                "flexFlow": "row wrap",
               }
             }>
             <a
               className="item"
-              onClick={[Function]}>
+              onClick={[Function]}
+              style={
+                Object {
+                  "border": "1px solid rgb(247, 247, 247)",
+                  "borderRadius": ".28571429rem",
+                }
+              }>
               
             </a>
           </div>
@@ -166,10 +172,12 @@ exports[`test renders correctly 1`] = `
           }
         }>
         <button
-          className="ui blue basic button"
+          className="ui green basic button"
           onClick={[Function]}
           tabIndex={undefined}>
-          Login/Signup
+          Hi 
+          tim
+          .. Logout?
         </button>
       </div>
     </div>

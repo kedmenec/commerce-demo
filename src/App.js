@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 
 import {Button} from 'semantic-ui-react'
 import {Card, Icon, Input, Modal} from 'semantic-ui-react'
-
+import PropTypes from 'prop-types';
 // A simple wrapper around the the semantic UI input component that will omit
 // the meta prop (this avoids an "Unknown prop `meta` on <div>" error)
 const renderInput = ({
@@ -248,6 +248,11 @@ export class App extends Component {
       </div>
     );
   }
+}
+
+
+App.propTypes = {
+  client: PropTypes.any,
 }
 
 const mapStateToProps = (state, ownProps) => ({client: state.client});

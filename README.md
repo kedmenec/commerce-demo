@@ -1,3 +1,28 @@
+git clone https://github.com/kedmenec/commerce_app.git
+cd commerce_app
+npm install
+
+# if the API is running on another server (or port), you will need to edit the proxy in package.json so requests sent to the right place.
+
+# TO run some really basic tests (time constraints..)
+npm run test
+
+# start the development server
+npm start
+
+# to build
+npm run build
+
+Some comments on the exercise specifications and the app:
+- There are currently no notifications.  To add them in, they should be dispatched from the sagas.js files as this is where side affects go.  This would make the app more usable.
+- As long as a user is logged in, they can review/rate any item once (ie there is no purchase history)
+- Checking out simnply clears the cart, this could be changed to do more if needed, but for the point of the exercise I left it like that.
+- I didnt get around to doing any data visualisation/charts.
+- If you want to see the babel/webpack config, you can run npm run eject (see below) and it will be like create-react-app wasnt used.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -1516,17 +1541,17 @@ When you build the project, Create React App will place the `public` folder cont
 2. Install `serve` by running `npm install --save serve`.
 
 3. Add this line to `scripts` in `package.json`:
-    
+
     ```
     "now-start": "serve build/",
     ```
-    
+
 4. Run `now` from your project directory. You will see a **now.sh** URL in your output like this:
-    
+
     ```
     > Ready! https://your-project-dirname-tpspyhtdtk.now.sh (copied to clipboard)
     ```
-    
+
     Paste that URL into your browser when the build is complete, and you will see your deployed app.
 
 Details are available in [this article.](https://zeit.co/blog/now-static)

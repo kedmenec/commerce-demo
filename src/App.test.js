@@ -20,15 +20,16 @@ const store = createStore(() => ({
   },
   navigation: {
     filter: 'Sport'
-  }
+  },
+
 }));
 
 it('renders correctly', () => {
   const tree = renderer
     .create(
-    <Provider store={store}>
+    <Provider store={store}>q
       <MemoryRouter>
-        <Decorated/>
+        <Decorated client={{username: 'tim'}}/>
       </MemoryRouter>
     </Provider>
   )
