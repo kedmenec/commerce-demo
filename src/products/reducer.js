@@ -1,15 +1,13 @@
-import { PRODUCT_LOAD_SUCCESS } from './constants'
+import {PRODUCT_LOAD_SUCCESS} from './constants'
 
 const initialSate = {
   products: []
 }
 
-const reducer = function productReducer (state = initialSate, action) {
+const reducer = function productReducer(state = initialSate, action) {
   switch (action.type) {
     case PRODUCT_LOAD_SUCCESS:
-      return {
-        products: action.payload
-      }
+      return Object.assign({}, state, {products: action.payload});
 
     default:
       return state

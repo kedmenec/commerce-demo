@@ -1,29 +1,28 @@
-import { CLIENT_SET, CLIENT_UNSET } from './constants'
+import {CLIENT_SET, CLIENT_UNSET} from './constants'
 
 const initialSate = {
-  // id: null,
   token: null,
   id: null,
   username: null
-
-// {"pk":1,"username":"tim","email":"","first_name":"","last_name":""}
-
 }
 
-const reducer = function clientReducer (state = initialSate, action) {
+const reducer = function clientReducer(state = initialSate, action) {
   switch (action.type) {
     case CLIENT_SET:
-    // console.log(action)
+      // console.log(action)
       return {
         // id: action.token.userId,
-        token: action.payload.token,
+        token: action.payload.token
       }
 
     case CLIENT_UNSET:
       return Object.assign({}, state, initialSate);
 
     case 'USER_DETAIL_SUCESS':
-      return Object.assign({}, state, {id: action.payload.id, username: action.payload.username});
+      return Object.assign({}, state, {
+        id: action.payload.id,
+        username: action.payload.username
+      });
 
     default:
       return state

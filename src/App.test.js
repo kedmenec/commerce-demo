@@ -2,17 +2,21 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
-import { MemoryRouter } from 'react-router-dom';
-import { reduxForm } from 'redux-form';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import {App} from './App';
+import {MemoryRouter} from 'react-router-dom';
+import {reduxForm} from 'redux-form';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 
-const Decorated = reduxForm({ form: 'testForm' })(App);
+const Decorated = reduxForm({form: 'testForm'})(App);
 const store = createStore(() => ({
   products: {
-    products: [{title: 'testing'}],
+    products: [
+      {
+        title: 'testing'
+      }
+    ]
   },
   navigation: {
     filter: 'Sport'
@@ -20,13 +24,14 @@ const store = createStore(() => ({
 }));
 
 it('renders correctly', () => {
-  const tree = renderer.create(
+  const tree = renderer
+    .create(
     <Provider store={store}>
       <MemoryRouter>
-        <Decorated
-        />
+        <Decorated/>
       </MemoryRouter>
     </Provider>
-  ).toJSON();
+  )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

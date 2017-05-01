@@ -1,48 +1,38 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
-import { api } from '../utils/Api'
-// import { PRODUCT_LOAD_SUCCESS } from './constants'
+import {put, takeEvery} from 'redux-saga/effects'
 
-function* addToCart(action) {
+function * addToCart(action) {
   try {
-    yield [
-      put({type: 'ADD_TO_CART_SUCCESS', payload: action.payload}),
-    ]
+    yield[put({type: 'ADD_TO_CART_SUCCESS', payload: action.payload})]
   } catch (e) {
     console.log('error')
   }
 }
 
-function* removeFromCart(action) {
+function * removeFromCart(action) {
   try {
-    yield [
-      put({type: 'REMOVE_FROM_CART_SUCCESS', payload: action.payload}),
-    ]
+    yield[put({type: 'REMOVE_FROM_CART_SUCCESS', payload: action.payload})]
   } catch (e) {
     console.log('error')
   }
 }
 
-function* checkout(action) {
+function * checkout(action) {
   try {
-    yield [
-      // Put a notification side affect in here.
-      put({type: 'CHECKOUT_SUCCESS'}),
-    ]
+    yield[// Put a notification side affect in here.
+      put({type: 'CHECKOUT_SUCCESS'})]
   } catch (e) {
     console.log('error')
   }
 }
 
-
-
-export function* watchAddToCartRequest() {
+export function * watchAddToCartRequest() {
   yield takeEvery('ADD_TO_CART_REQUEST', addToCart);
 }
 
-export function* watchRemoveFromCartRequest() {
+export function * watchRemoveFromCartRequest() {
   yield takeEvery('REMOVE_FROM_CART_REQUEST', removeFromCart);
 }
 
-export function* watchCheckoutRequest() {
+export function * watchCheckoutRequest() {
   yield takeEvery('CHECKOUT_REQUEST', checkout);
 }

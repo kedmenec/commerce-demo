@@ -1,8 +1,7 @@
-import { store } from '../index.js';
+// import { store } from '../index.js';
 
 export function api(action : Object = {}) {
-  // const token = store.getState().landtApp.auth.token
-  console.log('calling api')
+  // const token = store.getState().landtApp.auth.token console.log('calling api')
 
   const errors = []
 
@@ -23,10 +22,9 @@ export function api(action : Object = {}) {
   }
 
   const headers = Object.assign({}, {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      // 'Authorization': token ? 'Basic ' + btoa(token + ':') : null
-    }, action.headers)
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }, action.headers)
 
   return new Promise((resolve, reject) => {
     var params = {
@@ -38,64 +36,56 @@ export function api(action : Object = {}) {
       params.body = JSON.stringify(action.payload);
     }
 
-    if(action.external) {
+    if (action.external) {
       params = {
         method: action.method,
         body: action.payload
       }
     }
 
-    // const endpoint = `${process.env.REACT_APP_API_URL}${action.endpoint}`
+    fetch(action.endpoint, params).then(response => {
+      if (response.status >= 400) {
+        const error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      } else {
+        return response;
+      }
+    }).then(response => {
+      const contentType = response
+        .headers
+        .get('content-type');
+      if (contentType && contentType.indexOf('application/json') > -1) {
+        return response.json();
+      }
 
+      return response.text();
+    }).then(data => {
+      resolve(data);
+    }).catch(error => {
+      /* istanbul ignore else */
+      if (error.response) {
+        const contentType = error
+          .response
+          .headers
+          .get('content-type');
 
-    fetch(action.endpoint, params)
-      .then(response => {
-        if (response.status >= 400) {
-          const error = new Error(response.statusText);
-          error.response = response;
-          throw error;
-        } else {
-          return response;
-        }
-      })
-      .then(response => {
-        const contentType = response.headers.get('content-type');
         if (contentType && contentType.indexOf('application/json') > -1) {
-          return response.json();
-        }
-
-        return response.text();
-      })
-      .then(data => {
-        resolve(data);
-      })
-      .catch(error => {
-        /* istanbul ignore else */
-        if (error.response) {
-          const contentType = error.response.headers.get('content-type');
-
-          if (contentType && contentType.indexOf('application/json') > -1) {
-            error.response.json().then(json => {
-              reject({
-                status: 'FAIL',
-                code: error.response.status,
-                error: error.response.statusText,
-                data: json
-              })
+          error
+            .response
+            .json()
+            .then(json => {
+              reject({status: 'FAIL', code: error.response.status, error: error.response.statusText, data: json})
             })
 
-            return;
-          }
-
-          error.response.text().then(text =>
-            reject({
-              status: 'FAIL',
-              code: error.response.status,
-              error: error.response.statusText,
-              data: text
-            })
-          )
+          return;
         }
-      })
+
+        error
+          .response
+          .text()
+          .then(text => reject({status: 'FAIL', code: error.response.status, error: error.response.statusText, data: text}))
+      }
+    })
   })
 }
