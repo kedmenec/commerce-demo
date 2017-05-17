@@ -1,53 +1,64 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import createSagaMiddleware from 'redux-saga'
-import {applyMiddleware, createStore, compose} from 'redux'
-import {Provider} from 'react-redux';
+import createSagaMiddleware from "redux-saga";
+import { applyMiddleware, createStore, compose } from "redux";
+import { Provider } from "react-redux";
 
-import persistState from 'redux-localstorage'
+import persistState from "redux-localstorage";
 
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import './index.css';
+import "./index.css";
 
 // Import the index reducer and sagas
-import IndexReducer from './index-reducer'
-import IndexSagas from './index-sagas'
+import IndexReducer from "./index-reducer";
+import IndexSagas from "./index-sagas";
 
-import App from './App'
-import Products from './products'
-import Cart from './cart'
+import App from "./App";
+import Products from "./products";
+import Cart from "./cart";
 
 // Setup the middleware to watch between the Reducers and the Actions
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 /*eslint-disable */
-const composeSetup = process.env.NODE_ENV !== 'production' && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+const composeSetup = process.env.NODE_ENV !== "production" &&
+  typeof window === "object" &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-  : compose
+  : compose;
 /*eslint-enable */
 
 // Middleware
 const enhancer = composeSetup(
-/* [middlewares] */
-// Save state to localstorage when it changes.  Load on app load.
-persistState(/*paths, config*/),
-// Redux saga middelware.
-applyMiddleware(sagaMiddleware))
+  /* [middlewares] */
+  // Save state to localstorage when it changes.  Load on app load.
+  persistState(/*paths, config*/),
+  // Redux saga middelware.
+  applyMiddleware(sagaMiddleware)
+);
 
 // allows redux devtools to watch sagas
-const store = createStore(IndexReducer, enhancer,)
+const store = createStore(IndexReducer, enhancer);
 
 // Begin our Index Saga
-sagaMiddleware.run(IndexSagas)
+sagaMiddleware.run(IndexSagas);
+
+import { DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
+import { DragDropContextProvider } from "react-dnd";
 
 ReactDOM.render(
-  <Provider store={store}>
-  <Router>
-    <App history={history}>
-      <Route exact path="/" component={Products}/>
-      <Route path="/cart" component={Cart}/>
-    </App>
-  </Router>
-</Provider>, document.getElementById('root'));
+  <DragDropContextProvider backend={HTML5Backend}>
+    <Provider store={store}>
+      <Router>
+        <App history={history}>
+          <Route exact path="/" component={Products} />
+          <Route path="/cart" component={Cart} />
+        </App>
+      </Router>
+    </Provider>
+  </DragDropContextProvider>,
+  document.getElementById("root")
+);
