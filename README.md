@@ -1,29 +1,43 @@
-git clone https://github.com/kedmenec/commerce_app.git
+# Demo Application - Commerce
+
+This is a coding exercise app with basic user management, product filter/search, shopping cart and reviews system.
+
+The aim of this React application is to showcase knowledge of
+[React](https://facebook.github.io/react/)
+[Redux](https://github.com/reactjs/redux)
+[React-Router](https://github.com/ReactTraining/react-router)
+Data Visualisation [Victory](https://github.com/FormidableLabs/victory)
+HTML5 Interactions [React DND](https://github.com/react-dnd/react-dnd)
+as well as being able to communicate with an API and manage actions and side effects [Redux Saga](https://github.com/redux-saga/redux-saga)
+Styling achieved using [Semantic UI](https://react.semantic-ui.com/)
+
+
+## Getting Started
+
+```git clone https://github.com/kedmenec/commerce_app.git
 cd commerce_app
-npm install
+npm install```
 
-# if the API is running on another server (or port), you will need to edit the proxy in package.json so requests sent to the right place.
+if the API is running on another server (or port), you will need to edit the proxy in package.json so requests sent to the right place.
 
-# TO run some really basic tests (time constraints..)
-npm run test
+TO run some really basic tests (time constraints..)
+```npm run test```
 
-# start the development server
-npm start
+Start the development server
+```npm start```
 
-# to build
-npm run build
+To build
+```npm run build```
 
-Some comments on the exercise specifications and the app:
+## Some comments on the exercise specifications and the app:
 - There are currently no notifications.  To add them in, they should be dispatched from the sagas.js files as this is where side affects go.  This would make the app more usable.
 - As long as a user is logged in, they can review/rate any item once (ie there is no purchase history)
 - Checking out simnply clears the cart, this could be changed to do more if needed, but for the point of the exercise I left it like that.
-- I didnt get around to doing any data visualisation/charts.
 - If you want to see the babel/webpack config, you can run npm run eject (see below) and it will be like create-react-app wasnt used.
 
-
-
-
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+# Standard react-create-app README below for reference.
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
