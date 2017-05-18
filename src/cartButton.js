@@ -24,7 +24,7 @@ function collect(connect, monitor) {
 
 class CartButton extends Component {
   render() {
-    const { product, connectDropTarget, isOver } = this.props;
+    const { connectDropTarget, isOver } = this.props;
 
     return connectDropTarget(
       <div>

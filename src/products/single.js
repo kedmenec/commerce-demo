@@ -1,16 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { DragSource } from "react-dnd";
-
-import {
-  Card,
-  Icon,
-  Button,
-  Rating,
-  Modal,
-  Input,
-  Message
-} from "semantic-ui-react";
+import { Card, Button, Rating } from "semantic-ui-react";
 
 const productSource = {
   beginDrag(props) {

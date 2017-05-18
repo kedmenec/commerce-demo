@@ -15,6 +15,10 @@ import "./index.css";
 import IndexReducer from "./index-reducer";
 import IndexSagas from "./index-sagas";
 
+// React drag and drop
+import HTML5Backend from "react-dnd-html5-backend";
+import { DragDropContextProvider } from "react-dnd";
+
 import App from "./App";
 import Products from "./products";
 import Cart from "./cart";
@@ -44,10 +48,6 @@ const store = createStore(IndexReducer, enhancer);
 
 // Begin our Index Saga
 sagaMiddleware.run(IndexSagas);
-
-import { DragDropContext } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
-import { DragDropContextProvider } from "react-dnd";
 
 ReactDOM.render(
   <DragDropContextProvider backend={HTML5Backend}>

@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  Card,
-  Icon,
-  Button,
-  Rating,
-  Modal,
-  Input,
-  Message
-} from "semantic-ui-react";
+import { Icon, Button, Rating, Modal, Input, Message } from "semantic-ui-react";
 import SingleProduct from "./single.js";
 
 // import { ItemTypes } from "./Constants";
@@ -164,7 +156,7 @@ class Products extends Component {
               </Modal.Content>
             ))}
 
-            {this.props.username
+            {username
               ? <Modal.Content>
                   <Message>
                     <h3>Leave Review</h3>

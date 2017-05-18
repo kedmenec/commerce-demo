@@ -8,9 +8,12 @@ import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 
 import { Button } from "semantic-ui-react";
-import { Card, Icon, Input, Modal } from "semantic-ui-react";
+import { Card, Icon, Input } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import CartButton from "./cartButton";
+
+import LoginModal from "./LoginModal";
+import LogoutModal from "./LogoutModal";
 
 // A simple wrapper around the the semantic UI input component that will omit
 // the meta prop (this avoids an "Unknown prop `meta` on <div>" error)
@@ -189,79 +192,18 @@ export class App extends Component {
           }}
         />
 
-        <Modal
+        <LoginModal
           dimmer={dimmer}
-          open={login_open}
-          onClose={this.close_login}
-          size="small"
-          closeIcon="close"
-        >
-          <Modal.Header>Login or Signup</Modal.Header>
-          <Modal.Content>
-            <Modal.Description>
-              <p>If you already have a username and password, enter it here.</p>
-              <p>
-                If you dont, enter the username and password you want to use and we will
-                create an account for you!
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center"
-                }}
-              >
-                <Field
-                  name="username"
-                  component={renderInput}
-                  placeholder="Username"
-                  style={{
-                    margin: 5
-                  }}
-                />
-
-                <Field
-                  name="password"
-                  component={renderInput}
-                  placeholder="Password"
-                  style={{
-                    margin: 5
-                  }}
-                />
-              </div>
-            </Modal.Description>
-
-          </Modal.Content>
-          <Modal.Actions>
-            <Button
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Login"
-              onClick={this.login}
-            />
-          </Modal.Actions>
-        </Modal>
-
-        <Modal
+          login_open={login_open}
+          close_login={this.close_login}
+          login={this.login}
+        />
+        <LogoutModal
           dimmer={dimmer}
-          open={logout_open}
-          onClose={this.close_logout}
-          size="small"
-          closeIcon="close"
-        >
-          <Modal.Header>Logout</Modal.Header>
-
-          <Modal.Actions>
-            <Button
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Logout"
-              onClick={this.logout}
-            />
-          </Modal.Actions>
-        </Modal>
+          logout_open={logout_open}
+          close_logout={this.close_logout}
+          logout={this.logout}
+        />
       </div>
     );
   }
