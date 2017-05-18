@@ -21,7 +21,8 @@
     "redux-form": "^6.6.3",
     "redux-localstorage": "^0.4.1",
     "redux-saga": "^0.14.6",
-    "semantic-ui-react": "^0.68.0"
+    "semantic-ui-react": "^0.68.0",
+    "victory": "^0.19.1"
   },
   "scripts": {
     "start": "react-scripts start",

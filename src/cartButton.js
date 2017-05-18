@@ -24,14 +24,16 @@ function collect(connect, monitor) {
 
 class CartButton extends Component {
   render() {
-    const { connectDropTarget, isOver } = this.props;
+    const { connectDropTarget, isOver, cart } = this.props;
+
+    console.log(cart.length);
 
     return connectDropTarget(
       <div>
         <Link to="/cart">
           <Button
             color={isOver ? "red" : "blue"}
-            content={"Cart"}
+            content={"Cart (" + cart.length + ")"}
             basic
             label={{
               basic: true,
@@ -48,7 +50,9 @@ class CartButton extends Component {
 
 // We only need to get the dispatch function which is default,
 // we dont need any other props from the state.
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  cart: state.cart.cart
+});
 
 const droppable = DropTarget("product", cartTarget, collect)(CartButton);
 const connected = connect(mapStateToProps)(droppable);

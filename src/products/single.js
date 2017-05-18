@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { DragSource } from "react-dnd";
 import { Card, Button, Rating } from "semantic-ui-react";
+import { connect } from "react-redux";
 
 const productSource = {
   beginDrag(props) {
@@ -95,4 +96,10 @@ class SingleProduct extends Component {
   }
 }
 
-export default DragSource("product", productSource, collect)(SingleProduct);
+// We only need to get the dispatch function which is default,
+// we dont need any other props from the state.
+const mapStateToProps = state => ({});
+
+const draggable = DragSource("product", productSource, collect)(SingleProduct);
+const connected = connect(mapStateToProps)(draggable);
+export default connected;
